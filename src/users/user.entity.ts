@@ -2,6 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 class User {
+    // почему id стал необязательным?
     @PrimaryGeneratedColumn()
     public id?: number;
 

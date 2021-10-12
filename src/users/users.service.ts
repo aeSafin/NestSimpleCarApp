@@ -12,6 +12,8 @@ export class UsersService {
     ) {}
 
     async getByEmail(email: string) {
+        // вообще запросы в базу лучше в try catch пихать
+        // некорректно: не выполнено условие ТЗ: "без использования ORM библиотек (чистый sql)." | для исправления оплошности исопльзовать пакет pg: https://stackoverflow.com/questions/60833520/how-can-i-use-raw-sql-in-nestjs-instead-of-typeorm-or-sequelize
         const user = await this.usersRepository.findOne({ email });
         if (user) {
             return user;
@@ -23,6 +25,7 @@ export class UsersService {
     }
 
     async create(userData: CreateUserDto) {
+        // зачем так сложно? почему не сделать цепочку .crete().save()? 
         const newUser = await this.usersRepository.create(userData);
         await this.usersRepository.save(newUser);
         return newUser;

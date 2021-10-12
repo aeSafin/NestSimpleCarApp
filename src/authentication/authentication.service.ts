@@ -22,6 +22,7 @@ export class AuthenticationService {
                 ...registrationData,
                 password: hashedPassword,
             });
+            // возвращаемый тип функции сделай и там логику пароля, и не надо будет в пароль undefined присваивать
             createdUser.password = undefined;
             return createdUser;
         } catch (error) {
@@ -38,9 +39,11 @@ export class AuthenticationService {
         }
     }
 
+    // название некорректное: get cookie with JWT token, где JWT - json web TOKEN, получается get cookie with json web token token
     public getCookieWithJwtToken(userId: number) {
         const payload: TokenPayload = { userId };
         const token = this.jwtService.sign(payload);
+        // тяжко читать, вынеси в функцию createJWTCookie
         return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${this.configService.get(
             'JWT_EXPIRATION_TIME',
         )}`;

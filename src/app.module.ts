@@ -21,6 +21,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
             username: process.env.POSTGRES_USER,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DB,
+            // проект вообще запускается? что это за свойства? их не должно быть в тайп орм модуле
             JWT_SECRET: String(process.env.JWT_SECRET),
             JWT_EXPIRATION_TIME: process.env.JWT_EXPIRATION_TIME,
             autoLoadEntities: true,
