@@ -13,6 +13,9 @@ export class HireService {
     ) {}
 
     async create(createHireDto: CreateHireDto) {
+        // зачем второй селект, где проверка на скидки?
+        // где проверка на на выходные дни?
+        // пауза бронирования???
         const hire = await this.hireRepository.query(`
             select
             "hire.carId",

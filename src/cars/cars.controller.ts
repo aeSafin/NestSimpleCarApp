@@ -26,7 +26,9 @@ export class CarsController {
     }
 
     @Get(':id')
+    // почему строка? пусть число приходит
     findOne(@Param('id') id: string) {
+        // что за неявные преобразования?
         return this.carsService.findOne(+id);
     }
 

@@ -12,7 +12,10 @@ export class CarsService {
         private readonly carRepository: Repository<Car>,
     ) {}
 
+    // где отчет по средней загрузке???
+
     async create(createCarDto: CreateCarDto): Promise<Car> {
+        // почему нельзя через create() или конструктор нормально описать?????
         const car = new Car();
         car.carBrand = createCarDto.carBrand;
         car.model = createCarDto.model;
@@ -35,6 +38,7 @@ export class CarsService {
 
     async update(id: number, updateCarDto: UpdateCarDto) {
         await this.carRepository.update(id, updateCarDto);
+        // updatedCar | это можно заменить на save() вместо двух запросов в базу
         const updateCar = await this.carRepository.findOne(id);
         if (updateCar) {
             return updateCar;
@@ -43,6 +47,7 @@ export class CarsService {
     }
 
     async remove(id: number): Promise<void> {
+        // removedCar
         const removeCar = await this.carRepository.delete(id);
         if (!removeCar.affected) {
             throw new HttpException('Car not found', HttpStatus.NOT_FOUND);

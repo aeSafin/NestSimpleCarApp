@@ -22,6 +22,7 @@ export class AuthenticationController {
     ) {}
 
     @Post('register')
+    // возвращаемые типы функций!!!!
     async register(@Body() registrationData: RegisterDto) {
         return this.authenticationService.register(registrationData);
     }
